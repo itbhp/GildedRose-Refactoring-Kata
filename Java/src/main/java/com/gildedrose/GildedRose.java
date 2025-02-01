@@ -7,6 +7,13 @@ class GildedRose {
         this.items = items;
     }
 
+    /*
+      1. Nested if -> code less nested
+          1.1 reversing if condition
+          1.2 introduce guard clauses
+      2. similar if conditions and then extract methods
+      3. introduce constant for magic literals, find duplications and extract them
+     */
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
             if (!items[i].name.equals("Aged Brie")
