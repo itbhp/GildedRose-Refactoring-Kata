@@ -1,8 +1,10 @@
 package com.gildedrose;
 
+import java.util.function.Consumer;
+
 class GildedRose {
     private static final ItemUpdaterFactory ITEM_UPDATER_FACTORY = new ItemUpdaterFactory();
-    private Item[] items;
+    private final Item[] items;
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -10,11 +12,11 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            createUpdaterFor(item).update(item);
+            createUpdaterFor(item).accept(item);
         }
     }
 
-    private static ItemUpdater createUpdaterFor(Item item) {
+    private static Consumer<Item> createUpdaterFor(Item item) {
         return ITEM_UPDATER_FACTORY.createFor(item);
     }
 }

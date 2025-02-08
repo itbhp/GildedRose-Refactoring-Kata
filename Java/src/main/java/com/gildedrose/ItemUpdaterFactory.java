@@ -1,8 +1,10 @@
 package com.gildedrose;
 
+import java.util.function.Consumer;
+
 class ItemUpdaterFactory {
 
-    public ItemUpdater createFor(Item item) {
+    public Consumer<Item> createFor(Item item) {
         return switch (item.name) {
             case "Aged Brie":
                 yield new AgedBrieItemUpdater();

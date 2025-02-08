@@ -1,8 +1,10 @@
 package com.gildedrose;
 
-public class GenericItemUpdater implements ItemUpdater {
+import java.util.function.Consumer;
+
+public class GenericItemUpdater implements Consumer<Item> {
     @Override
-    public void update(Item item) {
+    public void accept(Item item) {
         if (item.quality > 0) {
             item.quality = item.quality - 1;
         }

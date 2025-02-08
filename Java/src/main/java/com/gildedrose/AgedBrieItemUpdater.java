@@ -1,8 +1,11 @@
 package com.gildedrose;
 
-public class AgedBrieItemUpdater implements ItemUpdater {
+import java.util.function.Consumer;
+
+public class AgedBrieItemUpdater implements Consumer<Item> {
+
     @Override
-    public void update(Item item) {
+    public void accept(Item item) {
         if (item.quality < 50) {
             item.quality = item.quality + 1;
         }

@@ -1,8 +1,10 @@
 package com.gildedrose;
 
-public class SulfurasItemUpdater implements ItemUpdater {
+import java.util.function.Consumer;
+
+public class SulfurasItemUpdater implements Consumer<Item> {
     @Override
-    public void update(Item item) {
+    public void accept(Item item) {
         // do nothing
     }
 }
