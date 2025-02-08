@@ -25,6 +25,10 @@ class GildedRose {
                 }
 
                 item.sellIn = item.sellIn - 1;
+
+                if (item.name.equals(AGED_BRIE) && item.sellIn < 0 && item.quality < 50) {
+                    item.quality = item.quality + 1;
+                }
             }
 
             if (item.name.equals(BACKSTAGE)) {
@@ -39,6 +43,10 @@ class GildedRose {
                 }
 
                 item.sellIn = item.sellIn - 1;
+
+                if (item.name.equals(BACKSTAGE) && item.sellIn < 0) {
+                    item.quality = 0;
+                }
             }
 
             if (!item.name.equals(AGED_BRIE) && !item.name.equals(BACKSTAGE) && !item.name.equals(SULFURAS)) {
@@ -46,19 +54,10 @@ class GildedRose {
                     item.quality = item.quality - 1;
                 }
                 item.sellIn = item.sellIn - 1;
-            }
-
-            if (item.name.equals(AGED_BRIE) && item.sellIn < 0 && item.quality < 50) {
-                item.quality = item.quality + 1;
-            }
-
-            if (item.name.equals(BACKSTAGE) && item.sellIn < 0) {
-                item.quality = 0;
-            }
-
-            if (!item.name.equals(AGED_BRIE) && !item.name.equals(BACKSTAGE) && !item.name.equals(SULFURAS)) {
-                if (item.quality > 0 && item.sellIn < 0) {
-                    item.quality = item.quality - 1;
+                if (!item.name.equals(AGED_BRIE) && !item.name.equals(BACKSTAGE) && !item.name.equals(SULFURAS)) {
+                    if (item.quality > 0 && item.sellIn < 0) {
+                        item.quality = item.quality - 1;
+                    }
                 }
             }
         }
