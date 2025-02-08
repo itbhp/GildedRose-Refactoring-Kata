@@ -21,43 +21,19 @@ class GildedRose {
         for (Item item : items) {
             switch (item.name) {
                 case AGED_BRIE:
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
-                    item.sellIn = item.sellIn - 1;
-                    if (item.sellIn < 0 && item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
+                    new AgedBrieUpdateItem().update(item);
                     break;
                 case BACKSTAGE:
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
-                    if (item.sellIn < 11 && item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
-                    if (item.sellIn < 6 && item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
-
-                    item.sellIn = item.sellIn - 1;
-                    if (item.sellIn < 0) {
-                        item.quality = item.quality - item.quality;
-                    }
+                    new BackStageUpdateItem().update(item);
                     break;
                 case SULFURAS:
-                    // do nothing
+                    new SulfurasUpdateItem().update(item);
                     break;
                 default:
-                    if (item.quality > 0) {
-                        item.quality = item.quality - 1;
-                    }
-                    item.sellIn = item.sellIn - 1;
-                    if (item.sellIn < 0 && item.quality > 0) {
-                        item.quality = item.quality - 1;
-                    }
+                    new GenericUpdateItem().update(item);
                     break;
             }
         }
     }
+
 }
