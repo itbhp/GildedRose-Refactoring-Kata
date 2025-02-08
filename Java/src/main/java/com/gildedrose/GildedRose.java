@@ -17,5 +17,4 @@ class GildedRose {
     private static UpdateItem createUpdaterFor(Item item) {
         return updateItemFactory.invoke(item);
     }
-
 }
