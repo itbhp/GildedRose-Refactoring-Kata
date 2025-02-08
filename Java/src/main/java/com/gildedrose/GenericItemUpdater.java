@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class GenericUpdateItem implements UpdateItem {
+public class GenericItemUpdater implements ItemUpdater {
     @Override
     public void update(Item item) {
         if (item.quality > 0) {

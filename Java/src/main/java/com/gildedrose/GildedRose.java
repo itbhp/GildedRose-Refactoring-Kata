@@ -1,7 +1,7 @@
 package com.gildedrose;
 
 class GildedRose {
-    private static final UpdateItemFactory updateItemFactory = new UpdateItemFactory();
+    private static final ItemUpdaterFactory ITEM_UPDATER_FACTORY = new ItemUpdaterFactory();
     private Item[] items;
 
     public GildedRose(Item[] items) {
@@ -14,7 +14,7 @@ class GildedRose {
         }
     }
 
-    private static UpdateItem createUpdaterFor(Item item) {
-        return updateItemFactory.invoke(item);
+    private static ItemUpdater createUpdaterFor(Item item) {
+        return ITEM_UPDATER_FACTORY.createFor(item);
     }
 }
