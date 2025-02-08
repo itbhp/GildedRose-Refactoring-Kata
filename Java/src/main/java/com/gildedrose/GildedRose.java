@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import java.util.Optional;
+
 class GildedRose {
     private static final String AGED_BRIE = "Aged Brie";
     private static final String BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
@@ -19,21 +21,44 @@ class GildedRose {
      */
     public void updateQuality() {
         for (Item item : items) {
+            createUpdaterFor(item)
+                .ifPresentOrElse( // fold
+                    updater -> updater.update(item), // Some, NonEmpty
+                    () -> { // None or Empty case
+                        switch (item.name) {
+                            case AGED_BRIE:
+                                new AgedBrieUpdateItem().update(item);
+                                break;
+                            case BACKSTAGE:
+                                new BackStageUpdateItem().update(item);
+                                break;
+                            case SULFURAS:
+                                new SulfurasUpdateItem().update(item);
+                                break;
+                            default:
+                                new GenericUpdateItem().update(item);
+                                break;
+                        }
+                    });
+        }
+    }
+
+    private Optional<UpdateItem> createUpdaterFor(Item item) {
+        return Optional.ofNullable(
             switch (item.name) {
                 case AGED_BRIE:
-                    new AgedBrieUpdateItem().update(item);
-                    break;
+                    yield new AgedBrieUpdateItem();
                 case BACKSTAGE:
-                    new BackStageUpdateItem().update(item);
-                    break;
-                case SULFURAS:
-                    new SulfurasUpdateItem().update(item);
-                    break;
-                default:
-                    new GenericUpdateItem().update(item);
-                    break;
+                    yield new BackStageUpdateItem();
+//                case SULFURAS:
+//                    new SulfurasUpdateItem().update(item);
+//                    break;
+//                default:
+//                    new GenericUpdateItem().update(item);
+//                    break;
+                default: yield null;
             }
-        }
+        );
     }
 
 }
