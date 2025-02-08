@@ -18,50 +18,49 @@ class GildedRose {
       3. introduce constant for magic literals, find duplications and extract them
      */
     public void updateQuality() {
-        for (int i = 0; i < items.length; i++) {
-            if (items[i].name.equals(AGED_BRIE)) {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
+        for (Item item : items) {
+            if (item.name.equals(AGED_BRIE)) {
+                if (item.quality < 50) {
+                    item.quality = item.quality + 1;
                 }
 
-                items[i].sellIn = items[i].sellIn - 1;
+                item.sellIn = item.sellIn - 1;
             }
 
-            if (items[i].name.equals(BACKSTAGE)) {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
-                    if (items[i].sellIn < 11 && items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
+            if (item.name.equals(BACKSTAGE)) {
+                if (item.quality < 50) {
+                    item.quality = item.quality + 1;
+                    if (item.sellIn < 11 && item.quality < 50) {
+                        item.quality = item.quality + 1;
                     }
-                    if (items[i].sellIn < 6 && items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
+                    if (item.sellIn < 6 && item.quality < 50) {
+                        item.quality = item.quality + 1;
                     }
                 }
 
-                items[i].sellIn = items[i].sellIn - 1;
+                item.sellIn = item.sellIn - 1;
             }
 
-            if (!items[i].name.equals(AGED_BRIE) && !items[i].name.equals(BACKSTAGE) && !items[i].name.equals(SULFURAS)) {
-                if (items[i].quality > 0) {
-                    items[i].quality = items[i].quality - 1;
+            if (!item.name.equals(AGED_BRIE) && !item.name.equals(BACKSTAGE) && !item.name.equals(SULFURAS)) {
+                if (item.quality > 0) {
+                    item.quality = item.quality - 1;
                 }
-                items[i].sellIn = items[i].sellIn - 1;
+                item.sellIn = item.sellIn - 1;
             }
 
-            if (items[i].name.equals(AGED_BRIE) && items[i].sellIn < 0 && items[i].quality < 50) {
-                items[i].quality = items[i].quality + 1;
+            if (item.name.equals(AGED_BRIE) && item.sellIn < 0 && item.quality < 50) {
+                item.quality = item.quality + 1;
             }
 
-            if (items[i].name.equals(BACKSTAGE) && items[i].sellIn < 0) {
-                items[i].quality = 0;
+            if (item.name.equals(BACKSTAGE) && item.sellIn < 0) {
+                item.quality = 0;
             }
 
-            if (!items[i].name.equals(AGED_BRIE) && !items[i].name.equals(BACKSTAGE) && !items[i].name.equals(SULFURAS)) {
-                if (items[i].quality > 0 && items[i].sellIn < 0) {
-                    items[i].quality = items[i].quality - 1;
+            if (!item.name.equals(AGED_BRIE) && !item.name.equals(BACKSTAGE) && !item.name.equals(SULFURAS)) {
+                if (item.quality > 0 && item.sellIn < 0) {
+                    item.quality = item.quality - 1;
                 }
             }
-
         }
     }
 }
